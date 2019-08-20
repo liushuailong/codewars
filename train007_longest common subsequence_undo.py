@@ -54,12 +54,5 @@ Second property
 #    return max_common_subseq
 
 def lcs(x, y):
-    max_com_sseq = ""
-    flag_1 = 0
-    for i in range(len(x)):
-        for j in range(flag_1, len(y)):
-            if x[i] == y[j]:
-                flag_1 = j
-                max_com_sseq += x[i]
     pass
 
