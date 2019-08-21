@@ -20,18 +20,31 @@ same_structure_as([ [ [ ], [ ] ] ], [ [ 1, 1 ] ] )
 
 """
 
-def same_structure_as(original,other):
-    for x, y in zip(original, other):
-        if type(x) != type(y):
-            return False
-        else:
-            if type(x) == type(list):
-                same_structure_as(x, y)
+
+def same_structure_as(original, other):
+    if type(original) != type(other):
+        return False
+    if len(original) != len(other):
+        return False
+    else:
+        for x, y in zip(original, other):
+            if not isinstance(x, list) and not isinstance(y, list):
+                continue
+            if type(x) != type(y):
+                return False
             else:
-                return True
+                if isinstance(x, list):
+                    if same_structure_as(x, y):
+                        return True
+                    else:
+                        return False
+        return True
+
+
+
 
 if __name__ == "__main__":
-    if same_structure_as([1,[1,1]],[[2,2],2]):
+    if same_structure_as([1,[1,1]],[2,[2]]):
         print("ok")
     else:
         print("no")
