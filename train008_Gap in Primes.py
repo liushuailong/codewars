@@ -23,6 +23,10 @@ def gap(g, m, n):
             break
     for j in range(1, len(prime_list)):
         first_num, second_num = prime_list[j-1], prime_list[j]
-        if second_num - first_num == g:
+        if (second_num - first_num) == g:
             return [first_num, second_num]
     #return None
+
+
+if __name__ == "__main__":
+    print(gap(4, 100, 110))
