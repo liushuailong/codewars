@@ -29,7 +29,8 @@ def longest_side_down(pyramid):
             return result_num
         else:
             for i in range(len(temp_pyramid[temp_len-2])):
-                temp_pyramid[temp_len-2][i] = max(temp_pyramid[temp_len-2][i] + temp_pyramid[temp_len-1][i], temp_pyramid[temp_len-2][i] + temp_pyramid[temp_len-1][i+1])
+                temp_pyramid[temp_len-2][i] = max(temp_pyramid[temp_len-2][i] + temp_pyramid[temp_len-1][i],
+                                                  temp_pyramid[temp_len-2][i] + temp_pyramid[temp_len-1][i+1])
             temp_pyramid.pop()
 
 
