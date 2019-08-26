@@ -64,6 +64,6 @@ def sum_for_list(lst):
 
 
 if __name__ == "__main__":
-    a = sum_for_list([107, 158, 204, 100, 118, 123, 126, 110, 116, 100])
+    a = sum_for_list([1200000000, 150000000000, 313456445])
     print(a)
 
