@@ -20,6 +20,50 @@ letters). You do not have to check whether the string is a real word or not, onl
 """
 
 
-def find_word(board, word):
+def scan_char(board_temp, tuple_char, achar):
+    """
+    scan the board around about the tuple_char, judge weather equal to the achar.
+    :param board_temp:  array
+    :param tuple_char: array[tuple_char[0]][tuple_char[1]]
+    :param achar: the char in word
+    :return: list of tuple if match , else []
+    """
+    result_set = set()
+    for (i, j) in tuple_char:
+        if 0 <= (i - 1) and 0 <= (j - 1) and board_temp[i - 1][j - 1] == achar:
+            result_set.add((i - 1, j - 1))
+        elif 0 <= (i - 1) and board_temp[i - 1][j] == achar:
+            result_set.add((i - 1, j))
+        elif 0 <= (i - 1) and (j + 1) <= len(board_temp[0]) - 1 and board_temp[i - 1][j + 1] == achar:
+            result_set.add((i - 1, j + 1))
+        elif 0 <= (j - 1) and board_temp[i][j - 1] == achar:
+            result_set.add((i, j - 1))
+        elif (j + 1) <= len(board_temp[0]) - 1 and board_temp[i][j + 1] == achar:
+            result_set.add((i, j + 1))
+        elif 0 <= (j - 1) and (i + 1) <= len(board_temp) - 1 and board_temp[i - 1][j + 1] == achar:
+            result_set.add((i + 1, j - 1))
+        elif (i + 1) <= len(board_temp) - 1 and board_temp[i + 1][j] == achar:
+            result_set.add((i + 1, j))
+        elif (i + 1) <= len(board_temp) - 1 and (j + 1) <= len(board_temp[0]) - 1 and board_temp[i + 1][j] == achar:
+            result_set.add((i + 1, j + 1))
+    return result_set
 
-    return False
+
+def find_word(board, word):
+    tuple_set = set()
+    for num_1 in range(len(word)):
+        if num_1 == 0:
+            for i in range(len(board)):
+                for j in range(len(board[0])):
+                    if word[num_1] == board[i][j]:
+                        tuple_set.add((i, j))
+            if not tuple_set:
+                return False
+        else:
+            temp_set = scan_char(board, tuple_set, word[num_1])
+            if not temp_set:
+                return False
+            tuple_set = temp_set - tuple_set
+    return True
+
+
