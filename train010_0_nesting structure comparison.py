@@ -41,8 +41,6 @@ def same_structure_as(original, other):
         return True
 
 
-
-
 if __name__ == "__main__":
     if same_structure_as([1,[1,1]],[2,[2]]):
         print("ok")
